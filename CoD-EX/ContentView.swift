@@ -16,6 +16,9 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item>
 
+    @State private var errorMessage: String? = nil
+    @State private var showErrorAlert = false
+
     var body: some View {
         NavigationView {
             List {
@@ -40,6 +43,9 @@ struct ContentView: View {
             }
             Text("Select an item")
         }
+        .alert(isPresented: $showErrorAlert) {
+            Alert(title: Text("Error"), message: Text(errorMessage ?? "Unknown error"), dismissButton: .default(Text("OK")))
+        }
     }
 
     private func addItem() {
@@ -50,10 +56,9 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                errorMessage = "Failed to save item: \(nsError.localizedDescription)"
+                showErrorAlert = true
             }
         }
     }
@@ -65,10 +70,9 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                errorMessage = "Failed to delete item: \(nsError.localizedDescription)"
+                showErrorAlert = true
             }
         }
     }

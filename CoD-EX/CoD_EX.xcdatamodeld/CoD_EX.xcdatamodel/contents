@@ -3,7 +3,16 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="VaultItem" representedClassName="VaultItem" syncable="YES" codeGenerationType="class">
+        <attribute name="uuid" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="originalFilename" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="dateImported" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="thumbnailFilename" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="mediaType" optional="NO" attributeType="String" usesScalarValueType="NO"/>
+        <attribute name="checksum" optional="YES" attributeType="String" usesScalarValueType="NO"/>
+    </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="VaultItem" positionX="100" positionY="0" width="128" height="44"/>
     </elements>
 </model>
